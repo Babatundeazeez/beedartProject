@@ -1,3 +1,5 @@
+import AuthProvider from "./Header/Frames/AuthContext"
+import Footer from "./Header/Frames/Footer"
 import AboutUs from "./Header/NavbarPages/AboutUs"
 import Blogs from "./Header/NavbarPages/Blogs"
 import Home from "./Header/NavbarPages/Home"
@@ -13,6 +15,7 @@ function App() {
   return (
     <>
     <BrowserRouter >
+    <AuthProvider>
     <NavHeader />
 
     <Routes>
@@ -24,6 +27,8 @@ function App() {
      <Route path="/signUp" element = {<SignUp />} />
       
     </Routes>
+    <Footer />
+    </AuthProvider>
     </BrowserRouter>
       
     </>

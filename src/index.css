@@ -1,8 +1,25 @@
 
 .ad{
-    background-color: yellowgreen;
+    background-color: rgb(50, 86, 205);
     position: static;
     top: 0px;
     
     z-index: 1;
+}
+/* .logo-container{
+    text-align: center;
+    margin-top: 20px;
+} */
+.tag-line{
+    font-size: 0.85rem;
+    margin-top: -5px;
+    color: grey;
+    /* font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+.image{
+    background-image: url("/image/image2.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
 }
