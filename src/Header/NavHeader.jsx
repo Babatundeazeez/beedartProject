@@ -61,6 +61,9 @@ const NavHeader = () => {
                         <li>
                             <a className='dropdown-item' href="/signUp">Sign Up</a>
                         </li>
+                        <li>
+                            <a className='dropdown-item' href="/admin">Admin Page</a>
+                        </li>
 
                      </ul>
                 </li>

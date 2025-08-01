@@ -1,14 +1,19 @@
 import React, { useContext, useEffect } from 'react'
 import ProductCatelog from '../Frames/ProductCatelog'
 import { authContext } from '../Frames/AuthContext'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 const Product = () => {
+
+//  const {register, handleSubmit} = useForm()
 
   const {product,
       filters, 
       filtered, 
       setFiltered, 
       handleFilterChange,
+      filteredData,
       handleCategoryClick,
       filterFrame } = useContext(authContext)
 
@@ -16,20 +21,34 @@ const Product = () => {
  useEffect(()=>{
   filterFrame()
 
- },[])
+ },[filters])
 
 
-  useEffect(()=>{
-    const filteredData = product.filter((products)=>{
+//   useEffect(()=>{
+//     const filteredData = product.filter((products)=>{
 
-      const matchCategory = filters.category ? products.category === filters.category : true;
-      const matchSize = filters.size ? products.size === filters.size : true;
-      const matchOccasion = filters.occasion ? products.occasion === filters.occasion : true
-      return matchCategory && matchSize && matchOccasion
+//       const matchCategory = filters.category ? products.category === filters.category : true;
+//       const matchSize = filters.size ? products.size === filters.size : true;
+//       const matchOccasion = filters.occasion ? products.occasion=== filters.occasion : true
+//       return matchCategory && matchSize && matchOccasion
 
-    })
-    setFiltered(filteredData)
-  },[filters, product])
+//     })
+    
+//     setFiltered(filteredData)
+//   },[filters, product]
+// )
+  console.log("current filter", filters);
+  //console.log("Filtered Data",filteredData );
+  console.log("Product", product);
+  
+
+  
+  
+  
+
+  // useEffect(()=>{
+  //   setFiltered()
+  // }, [])
 
   return (
     <div className='container-fluid'>
@@ -78,21 +97,33 @@ const Product = () => {
             >
               <option value="">All Occasions</option>
               <option value="Eid">Eid</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Baby Naming">Baby Naming</option>
+              <option value="nikkai">Nikkai Package</option>
+              <option value="other">Other Package</option>
             </select>
           </div>
+              
+
+
         </div>
+
+
+
+
+
+
+
+
 
 {/* productListing............................ */}
         <div className='col-md-9'>
         {/* <ProductCatelog /> */}
           <div className="row">
-            {filtered.length > 0 ? (
+            {filtered && filtered.length > 0 ? (
               filtered.map((product) => (
                 <div className="col-md-4 mb-4" key={product._id}>
                   <div className="card h-100 shadow-sm">
-                    <img
+                   <Link to={`/singleProduct/${product._id}`}>
+                   <img
                       src={product.image}
                       alt={product.productName}
                       className="card-img-top"
@@ -105,6 +136,7 @@ const Product = () => {
                         {product.category} | {product.size} | {product.occasion}
                       </small>
                     </div>
+                   </Link>
                   </div>
                 </div>
               ))

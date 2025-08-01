@@ -1,5 +1,7 @@
+import Admin from "./Header/Frames/Admin"
 import AuthProvider from "./Header/Frames/AuthContext"
 import Footer from "./Header/Frames/Footer"
+import SingleProductPage from "./Header/Frames/SingleProductPage"
 import AboutUs from "./Header/NavbarPages/AboutUs"
 import Blogs from "./Header/NavbarPages/Blogs"
 import Home from "./Header/NavbarPages/Home"
@@ -25,6 +27,8 @@ function App() {
      <Route path="/product" element={<Product />} />
      <Route path="/signIn" element={<SignIn />} />
      <Route path="/signUp" element = {<SignUp />} />
+     <Route  path="/admin" element = {<Admin />}/>
+     <Route path="/singleProduct/:id" element = {<SingleProductPage />} />
       
     </Routes>
     <Footer />
