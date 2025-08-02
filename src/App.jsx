@@ -1,5 +1,8 @@
 import Admin from "./Header/Frames/Admin"
 import AuthProvider from "./Header/Frames/AuthContext"
+import CartPage from "./Header/Frames/cartPage"
+import CheckOutPage from "./Header/Frames/CheckOutPage"
+
 import Footer from "./Header/Frames/Footer"
 import SingleProductPage from "./Header/Frames/SingleProductPage"
 import AboutUs from "./Header/NavbarPages/AboutUs"
@@ -17,7 +20,7 @@ function App() {
   return (
     <>
     <BrowserRouter >
-    <AuthProvider>
+    {/* <AuthProvider> */}
     <NavHeader />
 
     <Routes>
@@ -29,10 +32,12 @@ function App() {
      <Route path="/signUp" element = {<SignUp />} />
      <Route  path="/admin" element = {<Admin />}/>
      <Route path="/singleProduct/:id" element = {<SingleProductPage />} />
+     <Route path="/cartPage" element = {<CartPage />} />
+     <Route path="/checkOutPage" element = {<CheckOutPage />} />
       
     </Routes>
     <Footer />
-    </AuthProvider>
+    {/* </AuthProvider> */}
     </BrowserRouter>
       
     </>

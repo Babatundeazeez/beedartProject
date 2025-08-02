@@ -119,21 +119,21 @@ const Product = () => {
         {/* <ProductCatelog /> */}
           <div className="row">
             {filtered && filtered.length > 0 ? (
-              filtered.map((product) => (
-                <div className="col-md-4 mb-4" key={product._id}>
+              filtered.map((productFrame) => (
+                <div className="col-md-4 mb-4" key={productFrame._id}>
                   <div className="card h-100 shadow-sm">
-                   <Link to={`/singleProduct/${product._id}`}>
+                   <Link to={`/singleProduct/${productFrame._id}`}>
                    <img
-                      src={product.image}
-                      alt={product.productName}
+                      src={productFrame.image}
+                      alt={productFrame.productName}
                       className="card-img-top"
                       style={{ height: "150px", objectFit: "cover" }}
                     />
                     <div className="card-body text-center">
-                      <h5 className="card-title">{product.productName}</h5>
-                      <p className="text-info fw-bold">₦{product.price}</p>
+                      <h5 className="card-title">{productFrame.productName}</h5>
+                      <p className="text-info fw-bold">₦{productFrame.price}</p>
                       <small className="text-muted">
-                        {product.category} | {product.size} | {product.occasion}
+                        {productFrame.category} | {productFrame.size} | {productFrame.occasion}
                       </small>
                     </div>
                    </Link>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
 export const authContext = createContext()
@@ -15,6 +15,11 @@ const AuthProvider = ({children}) =>{
 
     const [singleFilteredProduct, setSingleFiltered] = useState([])
     const [isSingle, setIsSingle] = useState(false)
+
+    const [cartProduct, setCartProduct] = useState(()=>{
+        const storedCart = localStorage.getItem("cartItems");
+        return storedCart ? JSON.parse(storedCart) : [];
+    })
 
     const [filters, setFilters] = useState({
         category : "",
@@ -133,6 +138,64 @@ const AuthProvider = ({children}) =>{
             setIsSingle(false)
         }
     }
+    ////////////////////////////////////////////////
+
+    // useEffect  (()=>{
+    //     const storedCart = localStorage.getItem("cartItems");
+    //     console.log("Loaded from storage", storedCart);
+        
+    //     if (storedCart){
+    //         setCartProduct(JSON.parse(storedCart))
+    //     }
+    // },[])
+
+
+    useEffect(()=>{
+        console.log("savings to local storage", cartProduct);
+        
+        localStorage.setItem("cartItems", JSON.stringify(cartProduct))
+    }, [cartProduct])
+    
+    const addCart = (product) =>{
+        const cleanProduct = {
+            _id: product._id,
+            image: product.image,
+            productName: product.productName,
+            price: product.price,
+            category: product.category ?? "N/A",
+            size: product.size ?? "N/A",
+            occasion: product.occasion ?? "N/A",
+          };
+
+        setCartProduct((prev) => {
+            const existingItem = prev.find(item => item._id === cleanProduct._id);
+            if (existingItem){
+                return prev.map(item =>
+                    item._id === cleanProduct._id 
+                    ? {...item, quantity: item.quantity + 1}
+                     : item
+                )
+            }
+            else{
+                return [...prev, {...cleanProduct, quantity: 1}]
+            }
+        })
+        console.log("adding to Cart", cleanProduct);
+        
+
+        
+    }
+
+    const removeCartProduct = (id) => {
+        setCartProduct(prev => prev.filter(item => item._id !== id))
+
+    }
+
+    const upDateCartProduct = (id,qty) =>{
+        setCartProduct(prev => prev.map(item => item._id === id ? {...item, quantity: qty} : item))
+
+    }
+    /////////////////////////////////////////////////////
 
 
     const value = {
@@ -149,7 +212,13 @@ const AuthProvider = ({children}) =>{
 
         singleProduct,
         singleFilteredProduct,
-        isSingle
+        isSingle,
+
+        cartProduct,
+        setCartProduct,
+        addCart,
+        removeCartProduct,
+        upDateCartProduct
 
     }
     return(

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SearchForm from './NavbarPages/SearchForm'
+import { authContext } from './Frames/AuthContext'
+import { Link } from 'react-router-dom'
 
 const NavHeader = () => {
+    const {cartProduct} = useContext(authContext)
   return (
     <nav className='ad navbar navbar-expand-lg p-3 navbar-light p-1 mb-1 fixed-top '>
        <div className='container-fluid d-flex justify-content-between align-items-center'>
@@ -37,9 +40,9 @@ const NavHeader = () => {
                     <a href="/blogs" className='nav-link text-white'>Blogs</a>
                 </li>
                 
-                <li className='nav-item'>
+                {/* <li className='nav-item'>
                     <a href="/cartPage" className='nav-link text-white'>Cart Page</a>
-                </li>
+                </li> */}
                 <li className='nav-item'>
                     <a href="/contact" className='nav-link text-white'>Contact Us</a>
                 </li>
@@ -77,7 +80,9 @@ const NavHeader = () => {
 
        </div>
 
-        
+        <Link to="/cartPage" className='btn btn-outline-secondary'>
+        Cart ({cartProduct.length})
+        </Link>
 
     </nav>
   )
