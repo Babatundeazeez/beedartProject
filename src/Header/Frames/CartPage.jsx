@@ -14,7 +14,7 @@ const CartPage = () => {
         }
         
         navigate('/checkOutPage')
-       // setCartProduct([])
+       
         
     }
 

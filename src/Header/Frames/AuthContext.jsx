@@ -21,6 +21,85 @@ const AuthProvider = ({children}) =>{
         return storedCart ? JSON.parse(storedCart) : [];
     })
 
+    const [verifyUser, setVerifyUser] = useState()
+    const [isVerifying, setIsVerifying] = useState(false)
+
+    const [currentUser, setCurrentUser] = useState(null)
+
+    const [order, setOrder] = useState([])
+
+    const getOrderURL = import.meta.env.VITE_Ordercart
+    const token = localStorage.getItem("token")
+    const getOrder = async() =>{
+        try {
+            const res = await axios.get(`${getOrderURL}/getOrder`, {
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            });
+            setOrder(res.data.order)
+            
+        } catch (error) {
+            console.log("Error Fetching Orders", error);
+            alert("Could not fetch order")
+            
+            
+        }
+
+    }
+
+
+
+
+    const verifyUrl = import.meta.env.VITE_VerifyURL
+    const verificationAccount = async(token) => {
+        setIsVerifying(true)
+        try {
+            const res = await axios.post(`${verifyUrl}/auth/verify/${token}`)
+            const data = res.data
+            console.log(data);
+            console.log("verification success", data);
+
+            if ( res.status === 200){
+                setVerifyUser(data)
+            }
+             
+        } catch (error) {
+            console.log(error);
+            if (error.response){
+                console.log("server error", error.response.data);
+                setVerifyUser(error.response.data)
+                
+            }
+            else{
+                console.log(error.message, "An error occur");
+                
+                setVerifyUser({message : "An error occur"})
+            }
+            
+        }
+        finally{
+            setIsVerifying(false)
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////
     const [filters, setFilters] = useState({
         category : "",
         size : "",
@@ -199,6 +278,14 @@ const AuthProvider = ({children}) =>{
 
 
     const value = {
+        verifyUser,
+        isVerifying,
+        verificationAccount,
+        currentUser,
+        setCurrentUser,
+
+
+
         product,
         addFrameProduct,
         filters,
@@ -218,7 +305,10 @@ const AuthProvider = ({children}) =>{
         setCartProduct,
         addCart,
         removeCartProduct,
-        upDateCartProduct
+        upDateCartProduct,
+
+        order,
+        getOrder
 
     }
     return(

@@ -41,7 +41,7 @@ const NavHeader = () => {
                 </li>
                 
                 {/* <li className='nav-item'>
-                    <a href="/cartPage" className='nav-link text-white'>Cart Page</a>
+                    <a href="/orderHistory" className='nav-link text-white'>Order Page</a>
                 </li> */}
                 <li className='nav-item'>
                     <a href="/contact" className='nav-link text-white'>Contact Us</a>
@@ -66,6 +66,9 @@ const NavHeader = () => {
                         </li>
                         <li>
                             <a className='dropdown-item' href="/admin">Admin Page</a>
+                        </li>
+                        <li>
+                            <a className='dropdown-item' href="/orderHistory">Order Page</a>
                         </li>
 
                      </ul>
