@@ -42,15 +42,14 @@ const AuthProvider = ({children}) =>{
         } catch (error) {
             console.log("Error Fetching Orders", error);
             alert("Could not fetch order")
-            
-            
+              
         }
 
     }
 
 
 
-
+//////////////////////////////////////////////////////////
     const verifyUrl = import.meta.env.VITE_VerifyURL
     const verificationAccount = async(token) => {
         setIsVerifying(true)
@@ -84,7 +83,7 @@ const AuthProvider = ({children}) =>{
 
     }
 
-
+/////////////////////////////////////////////////////////////////////
 
 
 

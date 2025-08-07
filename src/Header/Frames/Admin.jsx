@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {useForm} from 'react-hook-form'
 import axios from "axios"
+import { authContext } from './AuthContext'
+import UpdateStatus from './UpdateStatus'
 
 const Admin = () => {
     const {register, handleSubmit} = useForm()
+    const {order} = useContext(authContext)
 
     const AdminAddProduct = async(data)=>{
         console.log(data);
@@ -44,7 +47,7 @@ const Admin = () => {
     <div className='container my-5'>
         <h2 className='text-center' style={{marginTop : "110px"}}>Welcome Back</h2>
     <div className='row'>
-        <div className='col-ms-6 col-md-8'>
+        <div className='col-ms-6 col-md-6'>
         <div className='card shadow'>
             <div className='card-body'>
 
@@ -110,6 +113,11 @@ const Admin = () => {
             </div>
 
         </div>
+        </div>
+        <div className='col-6'>
+            <h2>Hello</h2>
+            {/* <UpdateStatus /> */}
+
         </div>
 
     </div>

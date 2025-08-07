@@ -122,7 +122,7 @@ const Product = () => {
               filtered.map((productFrame) => (
                 <div className="col-md-4 mb-4" key={productFrame._id}>
                   <div className="card h-100 shadow-sm">
-                   <Link to={`/singleProduct/${productFrame._id}`}>
+                   <Link to={`/singleProduct/${productFrame._id}`} className='myStyle'>
                    <img
                       src={productFrame.image}
                       alt={productFrame.productName}

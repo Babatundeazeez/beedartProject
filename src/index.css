@@ -23,3 +23,7 @@
     background-position: center;
     height: 90vh;
 }
+.myStyle{
+    text-decoration: none;
+    /* color: black; */
+}

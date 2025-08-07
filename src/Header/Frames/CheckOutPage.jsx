@@ -19,45 +19,76 @@ const CheckOutPage = () => {
             alert("You are not logged in, Please log in first");
             return
         }
+
+
+        const handleOrderAfterpayment = async(reference) =>{
+            try {
+                const orderData = {
+                    carts : cartProduct.map(item =>({
+                        productId : item._id,
+                        productName : item.productName,
+                        price : item.price,
+                        quantity : item.quantity
+                    })),
+                   // userId : userId,
+                    totalAmount : totalAmount,
+                    paymentReference: reference
+                }
+        
+               
+        
+                const res = await axios.post(`http://localhost:1500/api/cart/cartOrder`, orderData, {
+                    headers : {
+                        Authorization : `Bearer ${token}`
+                    }
+                })
+               
+                if (res.data.status === "success"){
+                    alert("Payment successful! Order placed.")
+                    alert(res.data.message);
+                    setCartProduct([])
+                    localStorage.removeItem("cart")
+                }
+                
+               } catch (error) {
+                console.error("Failed to placed order after payment", error)
+                console.log("Failed to place order",error);
+                alert("There was a problem occur when placing your order")
+                console.log("Token:", token);
+                
+                
+               } 
+
+        }
+        ////////////PayStack////////////////////////////
+        const keyURL = import.meta.env.VITE_payStack
+        const email = currentUser?.email
+
+
+        const paymentHandler = window.PaystackPop.setup({
+            key: `${keyURL}`,
+            email: email,
+            amount: totalAmount * 100,
+            currency: "NGN",
+            callback:  function (response){
+                handleOrderAfterpayment(response.reference)
+
+                 
+            },
+
+
+
+            onclose: function(){
+                alert("Payment window close")
+            }
+
+        });
+
+        paymentHandler.openIframe()
+
       
 
-       try {
-        const orderData = {
-            carts : cartProduct.map(item =>({
-                productId : item._id,
-                productName : item.productName,
-                price : item.price,
-                quantity : item.quantity
-            })),
-           // userId : userId,
-            totalAmount : totalAmount
-        }
-
-       
-
-        const res = await axios.post(`http://localhost:1500/api/cart/cartOrder`, orderData, {
-            headers : {
-                Authorization : `Bearer ${token}`
-            }
-        })
-        // if (res.data.success){
-        //      alert(`Order place successfully`)
-        //      setCartProduct([])
-        //      localStorage.removeItem("cart")
-        // }
-        if (res.data.status === "success"){
-            alert(res.data.message);
-            setCartProduct([])
-            localStorage.removeItem("cart")
-        }
-        
-       } catch (error) {
-        console.log("Failed to place order",error);
-        alert("There was a problem occur when placing your order")
-        console.log("Token:", token);
-        
-        
-       }
+      
 
         
     }

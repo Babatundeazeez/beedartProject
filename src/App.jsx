@@ -8,10 +8,12 @@ import OrderHistory from "./Header/Frames/OrderHistory"
 import SingleProductPage from "./Header/Frames/SingleProductPage"
 import AboutUs from "./Header/NavbarPages/AboutUs"
 import Blogs from "./Header/NavbarPages/Blogs"
+import ContactUsPage from "./Header/NavbarPages/ContactUsPage"
 import Home from "./Header/NavbarPages/Home"
 import Product from "./Header/NavbarPages/Product"
 import SignIn from "./Header/NavbarPages/SignIn"
 import SignUp from "./Header/NavbarPages/SignUp"
+import UserOrderPage from "./Header/NavbarPages/UserOrderPage"
 import VerifyPage from "./Header/NavbarPages/VerifyPage"
 import NavHeader from "./Header/NavHeader"
 import {BrowserRouter, Route, Routes} from "react-router-dom"
@@ -38,6 +40,8 @@ function App() {
      <Route path="/checkOutPage" element = {<CheckOutPage />} />
      <Route path="/verify/:token" element = {<VerifyPage />} />
      <Route path="/orderHistory" element = {<OrderHistory />} />
+     <Route path="/contact" element = {<ContactUsPage />} />
+     <Route path="/orderPage" element ={<UserOrderPage />} />
       
     </Routes>
     <Footer />
