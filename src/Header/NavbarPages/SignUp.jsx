@@ -26,7 +26,7 @@ const SignUp = () => {
     console.log(data);
 
     try {
-      const res = await fetch(`${userUrl}/signUp`, {
+      const res = await fetch(`${userUrl}/auth/signUp`, {
         method : "POST",
         headers : {
           "Content-Type" : "application/json"

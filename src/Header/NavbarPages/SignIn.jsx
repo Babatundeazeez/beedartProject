@@ -23,7 +23,7 @@ const SignIn = () => {
   //console.log(data);
 
   try {
-    const res = await fetch(`${userUrl}/signIn`, {
+    const res = await fetch(`${userUrl}/auth/signIn`, {
       method : "POST",
       headers : {
         "Content-Type" : "application/json"
