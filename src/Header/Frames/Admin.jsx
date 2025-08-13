@@ -20,7 +20,7 @@ const Admin = () => {
         formData.append('image', data.image[0]);
         
         try {
-            const productURL = import.meta.env.VITE_productFrame
+            const productURL = import.meta.env.VITE_BASE_URL
             const token = localStorage.getItem("accessToken")
             const res = await axios.post(`${productURL}`,formData, {
                 headers : {
@@ -66,7 +66,7 @@ const Admin = () => {
                     </div>
                     <div>
                         <label htmlFor="size">Size: </label>
-                        {/* <input type="text" className='form-control' id="size" placeholder='Enter size' {...register("size")} /> */}
+                      
                         <select 
                         name="size" 
                         className='form-select'
@@ -80,7 +80,7 @@ const Admin = () => {
                     </div>
                     <div>
                         <label htmlFor="size">Category: </label>
-                        {/* <input type="text" className='form-control' id="category" placeholder='Enter category' {...register("category")} /> */}
+                      
                         <select 
                         name="category" 
                         id="category"
@@ -94,7 +94,7 @@ const Admin = () => {
                     </div>
                     <div>
                         <label htmlFor="size">Occasion: </label>
-                        {/* <input type="text" className='form-control' id="occasion" placeholder='Enter occasion' {...register("occasion")} /> */}
+                       
                         <select 
                         name="occasion" 
                         id="occasion"

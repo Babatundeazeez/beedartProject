@@ -16,7 +16,7 @@ const AuthProvider = ({children}) =>{
     const [singleFilteredProduct, setSingleFiltered] = useState([])
     const [isSingle, setIsSingle] = useState(false)
 
-    const [cartProduct, setCartProduct] = useState(()=>{
+    const [cartProduct, setCartProduct] = useState(()=> {
         const storedCart = localStorage.getItem("cartItems");
         return storedCart ? JSON.parse(storedCart) : [];
     })
@@ -29,7 +29,18 @@ const AuthProvider = ({children}) =>{
     const [order, setOrder] = useState([])
 
     const getOrderURL = import.meta.env.VITE_Ordercart
+    const baseURL = import.meta.env.VITE_BASE_URL
     const token = localStorage.getItem("token")
+
+
+    useEffect(()=>{
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        if(user){
+            setCurrentUser(user)
+        }
+
+    },[])
     const getOrder = async() =>{
         try {
             const res = await axios.get(`${getOrderURL}/getOrder`, {
@@ -47,10 +58,23 @@ const AuthProvider = ({children}) =>{
 
     }
 
+    const getCurrentUser =async ()=>{
+        try {
+            const id = localStorage.getItem("userId")
+            const res = await axios(`${baseURL}/user/${id}`)
+            const data = res.data
+            setCurrentUser(data.user)
+        } catch (error) {
+         console.log(error);
+         
+            
+        }
 
+    }
 
 //////////////////////////////////////////////////////////
-    const verifyUrl = import.meta.env.VITE_VerifyURL
+
+    const verifyUrl = import.meta.env.VITE_BASE_URL
     const verificationAccount = async(token) => {
         setIsVerifying(true)
         try {
@@ -83,20 +107,6 @@ const AuthProvider = ({children}) =>{
 
     }
 
-/////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /////////////////////////////////////////////////////////////////
     const [filters, setFilters] = useState({
@@ -122,32 +132,14 @@ const AuthProvider = ({children}) =>{
     }
 
 
-    // const handleFilterChange = (e) => {
-    //     setFilters({ ...filters, [e.target.name]: e.target.value });
-    //   };
-
-    // const handleCategoryClick = (cat) => {
-    //     setFilters({ ...filters, category: cat });
-    //   };
-  
    
 
-    //   const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFilters((prev) => ({
-    //       ...prev,
-    //       [name]: value,
-    //     }));
-    //   };
-    
-
-
       ///////////////function to display all product....///////////////
-    const productUrl = import.meta.env.VITE_productFrame
+    const productUrl = import.meta.env.VITE_BASE_URL
     const addFrameProduct = async() => {
 
         try {
-            const res = await axios.get(`${productUrl}`)
+            const res = await axios.get(`${productUrl}/product`)
             setProduct(res.data.frameProduct)
             setFiltered(res.data.frameProduct)
             console.log(res.data);
@@ -161,20 +153,8 @@ const AuthProvider = ({children}) =>{
     ///////////////////////////////////////////////////////////////////
     ////////////function to display filter product/////////////////////
     const filterFrame = async() =>{
-        // try {
-        //     const query = new URLSearchParams(filters).toString();
-
-        //     const res = await axios.get(`${productUrl}/filter?${query}`);
-        //    // setProduct(res.data.productFilter)
-        //     setFiltered(res.data.productFilter)
-        //     setMessage("")
-        // } catch (error) {
-        //     setProduct([])
-        //     setMessage("No Matching Product Found")
-        //     setFiltered([])
-            
-        // }
-        const filterProductURL = import.meta.env.VITE_productfilter
+      
+        const filterProductURL = import.meta.env.VITE_BASE_URL
 
         try {
             const query = new URLSearchParams()
@@ -183,7 +163,7 @@ const AuthProvider = ({children}) =>{
             if(filters.size) query.append("size", filters.size);
             if(filters.occasion) query.append("occasion", filters.occasion)
 
-                const res = await axios.get(`${filterProductURL}/filter?${query.toString()}`)
+                const res = await axios.get(`${filterProductURL}/product/filter?${query.toString()}`)
                 setFiltered(res.data.productFilter)
 
             
@@ -196,10 +176,10 @@ const AuthProvider = ({children}) =>{
     }
     //////Get single product Frame..................
     const singleProduct = async(id) =>{
-        const singleURL = import.meta.env.VITE_singleProduct
+        const singleURL = import.meta.env.VITE_BASE_URL
         setIsSingle(true)
         try {
-            const res = await axios.get(`${singleURL}/${id}`)
+            const res = await axios.get(`${singleURL}/product/${id}`)
             if (!res){
                 throw new Error("Failed to get Single Product");
                 
@@ -218,14 +198,7 @@ const AuthProvider = ({children}) =>{
     }
     ////////////////////////////////////////////////
 
-    // useEffect  (()=>{
-    //     const storedCart = localStorage.getItem("cartItems");
-    //     console.log("Loaded from storage", storedCart);
-        
-    //     if (storedCart){
-    //         setCartProduct(JSON.parse(storedCart))
-    //     }
-    // },[])
+   
 
 
     useEffect(()=>{
@@ -307,7 +280,8 @@ const AuthProvider = ({children}) =>{
         upDateCartProduct,
 
         order,
-        getOrder
+        getOrder,
+        getCurrentUser
 
     }
     return(

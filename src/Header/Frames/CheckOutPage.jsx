@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAuth } from './AuthContext'
 import axios from 'axios'
 
 const CheckOutPage = () => {
 
-    const {cartProduct, setCartProduct,currentUser} = useAuth()
+    const {cartProduct, setCartProduct,currentUser, getCurrentUser} = useAuth()
+    useEffect(()=>{
+        getCurrentUser()
+    })
 
     const totalAmount = cartProduct.reduce(
         (acct, item) => acct + item.price * item.quantity, 0
@@ -14,6 +17,8 @@ const CheckOutPage = () => {
 
        // const cartOrderUrl = import.meta.env.VITE_Ordercart
     
+       console.log(currentUser);
+       
         const token = localStorage.getItem("token")
         if (!token){
             alert("You are not logged in, Please log in first");
@@ -34,8 +39,6 @@ const CheckOutPage = () => {
                     totalAmount : totalAmount,
                     paymentReference: reference
                 }
-        
-               
         
                 const res = await axios.post(`http://localhost:1500/api/cart/cartOrder`, orderData, {
                     headers : {
@@ -60,13 +63,20 @@ const CheckOutPage = () => {
                } 
 
         }
+
         ////////////PayStack////////////////////////////
-        const keyURL = import.meta.env.VITE_payStack
+        const publicKeys = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
         const email = currentUser?.email
+        
+        console.log(publicKeys);
+        if(!publicKeys || !email){
+            alert("Missing paystack key or user email");
+            return;
+        }
 
 
         const paymentHandler = window.PaystackPop.setup({
-            key: `${keyURL}`,
+            key: publicKeys,
             email: email,
             amount: totalAmount * 100,
             currency: "NGN",
@@ -86,11 +96,6 @@ const CheckOutPage = () => {
 
         paymentHandler.openIframe()
 
-      
-
-      
-
-        
     }
 
     const handleQuantityChange = (id, newQuantity) =>{
