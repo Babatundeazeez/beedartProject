@@ -35,6 +35,7 @@ const CheckOutPage = () => {
                         price : item.price,
                         quantity : item.quantity
                     })),
+                    
                     totalAmount : totalAmount,
                     paymentReference: reference
                 }

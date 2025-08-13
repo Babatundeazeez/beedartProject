@@ -32,3 +32,6 @@
     color: #ffcc00 !important;
     transition: all 0.3s ease;
 }
+.cart{
+    width: 100px;
+}

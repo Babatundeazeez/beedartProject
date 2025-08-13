@@ -6,19 +6,28 @@ const Home = () => {
   return (
     <div className='container-fluid'>
       
-      <section className='hero-section d-flex align-items-center text-center text-white image'>
+      <section className='hero-section d-flex align-items-center text-center text-white image py-5'>
       
        <div className='container'>
        
        <div className='row justify-content-center'>
-       <SearchForm />
-          <div className='col-lg-8'>
-            <h1 className='display-4 fw-bold'>Eligant Arabic Calligraphy</h1>
-            <p className='lead mt-3 mb-4'>Framed Digital Gifts for Every Occassion</p>
+
+      <div className='col-12 mb-4'>
+      <SearchForm />
+      </div>
+
+          <div className=' col-12 col-md-8 col-lg-8'>
+            <h1 className='display-5 fw-bold display-md-4 display-lg-3'>
+              Eligant Arabic Calligraphy
+            </h1>
+
+            <p className='lead mt-3 mb-4 px-2'>
+               Framed Digital Gifts for Every Occassion
+            </p>
             
-            <a href="/shop" className='btn btn-secondary p-2' target='-blank'>
+            <a href="/product" className='btn btn-secondary px-4 py-2' target='-blank'>
               Shop Now
-              </a>
+            </a>
 
           </div>
 

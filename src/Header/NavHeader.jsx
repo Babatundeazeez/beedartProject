@@ -1,91 +1,95 @@
 import React, { useContext } from 'react'
-import SearchForm from './NavbarPages/SearchForm'
 import { authContext } from './Frames/AuthContext'
 import { Link } from 'react-router-dom'
 
 const NavHeader = () => {
     const {cartProduct} = useContext(authContext)
+
   return (
-    <nav className='ad navbar navbar-expand-lg p-3 navbar-light p-1 mb-1 fixed-top '>
-       <div className='container-fluid d-flex justify-content-between align-items-center'>
+    <nav className='ad navbar navbar-expand-lg p-3 navbar-dark bg-dark fixed-top shadow-sm '>
+        
+       <div className='container-fluid flex-wrap '>
 
-      <div className='logo-container d-flex flex-column'>
-      <a className='navbar-brand text- mb-0 ' href="/">
-      BeedahArt
-      </a>
+        {/* Brand + Tagline */}
+      <div className=' d-flex flex-column align-items-start'>
+        <Link className='navbar-brand fw-bold fs-4 mb-0' to="/">
+        BeedahArt
+        </Link>
+     
 
-      <small className='tag-line text-info fst-italic'>
+      <small className='text-info fst-italic'>
         Elegant digital Arabic Caligraphy - Framed for Every Occasion
       </small>
       </div>
+      {/* cart button for mobile */}
+      <Link to="/cartPage" className='btn btn-outline-light d-lg-none ms-2'>
+        Cart ({cartProduct.length})
+        </Link>
+        {/* Toggle button */}
 
-       <button type='button' className='navbar-toggler' data-bs-toggle="collapse" data-bs-target ='#demo' ><i className='fa fa-align-justify'></i></button>
-       
+       <button type='button' className='navbar-toggler ms-2' data-bs-toggle="collapse" data-bs-target ='#demo' >
+        <i className='fa fa-align-justify'></i>
+       </button>
+
+       {/* Menu Item */}
         <div className='collapse navbar-collapse ' id='demo'>
 
             <ul className='navbar-nav fw-bold ms-auto text-center'>
                 <li className='nav-item'>
-                    <a href="/" className='nav-link text-white'>Home</a>
+                    <Link className='nav-link text-white' to="/">Home</Link>
                 </li>
                 <li className='nav-item'>
-                    <a href="/product" className='nav-link text-white'>Product Page</a>
+                <Link className='nav-link text-white' to="/product">Product Page</Link>
                 </li>
                 <li className='nav-item'>
-                     <a className='nav-link text-white ' href="/orderPage">Custom Order Page</a>
+                <Link className='nav-link text-white' to="/orderPage">Customer Order Page</Link>
+                     
                 </li>
                 <li className='nav-item'>
-                    <a href="/aboutUs" className='nav-link text-white'>About Us</a>
+                    <Link className='nav-link text-white' to="/aboutUs"> About us</Link>
                 </li>
                 <li className='nav-item'>
-                    <a href="/blogs" className='nav-link text-white'>Blogs</a>
+                    <Link className='nav-link text-white' to="/blogs"> Blogs Page</Link>
                 </li>
                 
-                {/* <li className='nav-item'>
-                    <a href="/orderHistory" className='nav-link text-white'>Order Page</a>
-                </li> */}
+               
                 <li className='nav-item'>
-                    <a href="/contact" className='nav-link text-white'>Contact Us</a>
+                    <Link className='nav-link text-white' to="/contact"> Contact Us</Link>
                 </li>
                
                
                 <li className='nav-item dropdown'>
-                    <a className='nav-link text-white dropdown-toggle'
-                     href="/signUp"
+                    
+                     <Link className='nav-link text-white dropdown-toggle' to="#"
                      id='dropdown'
                      role='button'
                      data-bs-toggle = "dropdown"
                      aria-expanded = "false"
-                     >DashBoard</a>
+                     > DashBoard</Link>
 
-                     <ul className='dropdown-menu' aria-labelledby='dropdown'>
-                        <li>
-                            <a className='dropdown-item' href="/signIn">Sign In</a>
-                        </li>
-                        <li>
-                            <a className='dropdown-item' href="/signUp">Sign Up</a>
-                        </li>
-                        <li>
-                            <a className='dropdown-item' href="/admin">Admin Page</a>
-                        </li>
-                        <li>
-                            <a className='dropdown-item' href="/orderHistory">Order Page</a>
-                        </li>
+                     <ul className='dropdown-menu dropdown-menu-end' aria-labelledby='dropdown'>
+                        <li><Link className='dropdown-item' to="/signIn"> Sign In</Link></li>
+                        <li><Link className='dropdown-item' to="/signUp"> Sign Up</Link> </li>
+                        <li><Link className='dropdown-item' to="/admin"> Admin Page</Link></li>
+                        <li><Link className='dropdown-item' to="/orderHistory"> Order Page</Link></li>
 
                      </ul>
                 </li>
               
-                    {/* <SearchForm /> */}
-                {/* <button>Search</button> */}
+                
 
             </ul>
+            {/* cart Desktop */}
+            <Link to="/cartPage" className='btn btn-outline-light ms-lg-3 mt-3 mt-lg-0 '>
+                     Cart ({cartProduct.length})
+             </Link>
+
             </div>
            
 
        </div>
 
-        <Link to="/cartPage" className='btn btn-outline-secondary'>
-        Cart ({cartProduct.length})
-        </Link>
+       
 
     </nav>
   )
