@@ -1,6 +1,6 @@
 import Admin from "./Header/Frames/Admin"
 import AuthProvider from "./Header/Frames/AuthContext"
-import CartPage from "./Header/Frames/cartPage"
+import CartPage from "./Header/Frames/CartPage"
 import CheckOutPage from "./Header/Frames/CheckOutPage"
 
 import Footer from "./Header/Frames/Footer"
@@ -42,6 +42,7 @@ function App() {
      <Route path="/orderHistory" element = {<OrderHistory />} />
      <Route path="/contact" element = {<ContactUsPage />} />
      <Route path="/orderPage" element ={<UserOrderPage />} />
+     
       
     </Routes>
     <Footer />
