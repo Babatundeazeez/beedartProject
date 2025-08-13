@@ -6,16 +6,12 @@
     
     z-index: 1;
 }
-/* .logo-container{
-    text-align: center;
-    margin-top: 20px;
-} */
+
 .tag-line{
     font-size: 0.85rem;
     margin-top: -5px;
     color: grey;
-    /* font-style: italic;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+   
 }
 .image{
     background-image: url("/image/image2.jpeg");
@@ -25,5 +21,14 @@
 }
 .myStyle{
     text-decoration: none;
-    /* color: black; */
+   
+}
+.nav-link:hover{
+    color: #ffcc00 !important;
+    transition: color 0.3s ease;
+}
+.dropdown-item:hover{
+    background-color: #f8f9fa;
+    color: #ffcc00 !important;
+    transition: all 0.3s ease;
 }

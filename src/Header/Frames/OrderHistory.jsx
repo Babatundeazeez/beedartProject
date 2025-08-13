@@ -7,6 +7,7 @@ const OrderHistory = () => {
     useEffect(()=>{
         getOrder()
     },[token])
+    
   return (
     <div className='container' style={{marginTop : "120px"}}>
         <div className='row'>

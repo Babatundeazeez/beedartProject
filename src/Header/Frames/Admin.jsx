@@ -115,7 +115,7 @@ const Admin = () => {
         </div>
         </div>
         <div className='col-6'>
-            <h2>Hello</h2>
+            <h2></h2>
             {/* <UpdateStatus /> */}
 
         </div>

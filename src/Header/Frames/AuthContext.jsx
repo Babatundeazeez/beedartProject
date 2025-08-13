@@ -5,7 +5,7 @@ import { createContext } from "react";
 export const authContext = createContext()
 export const useAuth = () => useContext(authContext)
 
-const AuthProvider = ({children}) =>{
+const AuthProvider = ({children}) => {
 
     const [product, setProduct] = useState([])
     const [filtered, setFiltered] = useState([])
@@ -28,7 +28,8 @@ const AuthProvider = ({children}) =>{
 
     const [order, setOrder] = useState([])
 
-    const getOrderURL = import.meta.env.VITE_Ordercart
+    
+
     const baseURL = import.meta.env.VITE_BASE_URL
     const token = localStorage.getItem("token")
 
@@ -41,9 +42,11 @@ const AuthProvider = ({children}) =>{
         }
 
     },[])
+    ////////////////////////////////////////
     const getOrder = async() =>{
+        const getOrderURL = import.meta.env.VITE_BASE_URL
         try {
-            const res = await axios.get(`${getOrderURL}/getOrder`, {
+            const res = await axios.get(`${getOrderURL}/cart/getOrder`, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -57,8 +60,9 @@ const AuthProvider = ({children}) =>{
         }
 
     }
+    /////////////////////////////////////////////
 
-    const getCurrentUser =async ()=>{
+    const getCurrentUser = async ()=> {
         try {
             const id = localStorage.getItem("userId")
             const res = await axios(`${baseURL}/user/${id}`)

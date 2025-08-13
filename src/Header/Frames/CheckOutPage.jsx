@@ -35,12 +35,12 @@ const CheckOutPage = () => {
                         price : item.price,
                         quantity : item.quantity
                     })),
-                   // userId : userId,
                     totalAmount : totalAmount,
                     paymentReference: reference
                 }
         
-                const res = await axios.post(`http://localhost:1500/api/cart/cartOrder`, orderData, {
+                const cartURL = import.meta.env.VITE_BASE_URL
+                const res = await axios.post(`${cartURL}/cart/cartOrder`, orderData, {
                     headers : {
                         Authorization : `Bearer ${token}`
                     }
