@@ -18,7 +18,7 @@ const SignIn = () => {
   })
 
   const navigate = useNavigate()
-  const userUrl = import.meta.env.VITE_UserAuthURL
+  const userUrl = import.meta.env.VITE_BASE_URL
   const submitForm = async(data) =>{
   //console.log(data);
 
