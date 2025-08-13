@@ -55,22 +55,25 @@ const SignIn = () => {
 
   }
   return (
-    <div className='container'>
+    <div className='container my-5'>
 
-      <div className='row' style={{marginTop : "120px"}}>
-          <h4>Sign in</h4>
-        <form action="" className='form-control w-50 p-4' onSubmit={handleSubmit(submitForm)}>
+      <div className='row justify-content-center' style={{marginTop : "80px"}}>
+         <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
+         <h4 className='text-center mb-4'>Sign in</h4>
+        <form action="" className='form-control w-50 p-4 bg-light' onSubmit={handleSubmit(submitForm)}>
 
-          <div>
-            <label htmlFor="name">Email: </label>
-            <input type="email" className='form-control' id='email' placeholder='enter your email address' {...register('email')} />
+          <div className='mb-3'>
+            <label htmlFor="name" className='form-label'>Email: </label>
+            <input type="email" className='form-control' id='email' placeholder='Enter your email address' {...register('email')} />
           </div>
-          <div>
-            <label htmlFor="pasword">Password: </label>
+          <div className='mb-3'>
+            <label htmlFor="pasword" className='form-label'>Password: </label>
             <input type="password" className='form-control' id="password" placeholder='Enter your password here' {...register('password')} />
           </div>
-          <button className='btn btn-primary'>Sign In</button>
+          <button className='btn btn-primary w-100'>Sign In</button>
         </form>
+
+         </div>
 
       </div>
     </div>
