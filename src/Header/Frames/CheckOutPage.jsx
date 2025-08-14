@@ -9,10 +9,10 @@ const CheckOutPage = () => {
         getCurrentUser()
     },[])
 
-    if (!currentUser || !currentUser.email){
-        alert("Your account details are not loaded yet. pls try again later")
-        return
-    }
+    // if (!currentUser || !currentUser.email){
+    //     alert("Your account details are not loaded yet. pls try again later")
+    //     return
+    // }
 
     const totalAmount = cartProduct.reduce(
         (acct, item) => acct + item.price * item.quantity, 0
