@@ -7,7 +7,12 @@ const CheckOutPage = () => {
     const {cartProduct, setCartProduct,currentUser, getCurrentUser} = useAuth()
     useEffect(()=>{
         getCurrentUser()
-    })
+    },[])
+
+    if (!currentUser || !currentUser.email){
+        alert("Your account details are not loaded yet. pls try again later")
+        return
+    }
 
     const totalAmount = cartProduct.reduce(
         (acct, item) => acct + item.price * item.quantity, 0
@@ -35,7 +40,7 @@ const CheckOutPage = () => {
                         price : item.price,
                         quantity : item.quantity
                     })),
-                    
+
                     totalAmount : totalAmount,
                     paymentReference: reference
                 }
@@ -68,6 +73,11 @@ const CheckOutPage = () => {
         ////////////PayStack////////////////////////////
         const publicKeys = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
         const email = currentUser?.email
+
+        if(!publicKeys){
+            alert("Missing Paystack public key. Please check your environmental variables")
+            return;
+        }
         
         console.log(publicKeys);
         if(!publicKeys || !email){
