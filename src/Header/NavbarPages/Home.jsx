@@ -25,7 +25,7 @@ const Home = () => {
                Framed Digital Gifts for Every Occassion
             </p>
             
-            <a href="/product" className='btn btn-secondary px-4 py-2' target='-blank'>
+            <a href="/product" className='btn btn-secondary px-4 py-2'>
               Shop Now
             </a>
 
