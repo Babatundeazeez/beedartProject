@@ -44,9 +44,10 @@ const ContactUsPage = () => {
 
                 <div className='mt-5'>
                 <h5>📞 Contact Information</h5>
-                     <p>Email: <a href="mailto:support@beedahart.com">support@beedahart.com</a></p>
+                     <p>Email: <Link to="/mailto:support@beedahart.com" className='text-light text-decoration-none'>support@beedahArt.</Link></p>
                     <p>Phone: +234 000 000 0000</p>
                     <p>Instagram: <a href="https://instagram.com/beedahart" target="_blank" rel="noreferrer">@beedahart</a></p>
+                  
                 </div>
 
             </div>
