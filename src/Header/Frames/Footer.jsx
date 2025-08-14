@@ -29,7 +29,7 @@ const Footer = () => {
                         {/* Contact Info */}
                         <div className="col-md-4 mb-3 mt-5">
                             <h5>Contact Us</h5>
-                            <p>Email: <Link to="/mailto:support@beedahart.com" className='text-light text-decoration-none'>support@beedahArt.</Link></p>
+                            <p>Email: <a href="mailto:support@beedahart.com" className="text-light">support@beedahart.com</a></p>
                             
                             
                             <p>Phone: +234 9031 5782 21</p>

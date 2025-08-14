@@ -1,5 +1,6 @@
 import React from 'react'
 import Admin from '../Frames/Admin'
+import { Link } from 'react-router-dom'
 
 const AboutUs = () => {
   return (
