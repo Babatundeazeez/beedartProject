@@ -52,15 +52,15 @@ console.log("singleFilteredProduct", singleFilteredProduct);
                         </div>
                         </div>
 
-                                            </div>
+             </div>
                                             
 
                                         
                                     }
-                                     <div className="mt-3 text-center mb-4">
-                         <button className="btn btn-primary" onClick={() => addCart(singleFilteredProduct)}>Add to Cart </button>
-                        </div>
-                                </div>
+                <div className="mt-2 text-center mb-4">
+                     <button className="btn btn-primary" onClick={() => addCart(singleFilteredProduct)}>Add to Cart </  button>
+                 </div>
+             </div>
                             )
                         }
 

@@ -11,13 +11,16 @@ const OrderHistory = () => {
   return (
     <div className='container' style={{marginTop : "120px"}}>
         <div className='row'>
-        <h2>Your Order History 📦</h2>
+        <h2 className='mb-3'>Your Order History 📦</h2>
         {
             order.length === 0 ? (
                 <p>No order Found</p>
             ) : (
+                <>
+                // Desktop/Tablet device
+                <div className='table-responsive d-none d-md-block'>
                 <table className='table table-bordered table-hover mt-3'>
-                    <thead>
+                    <thead className='table-light'>
                         <tr>
                             <th>S/N</th>
                             <th>Order ID</th>
@@ -31,7 +34,7 @@ const OrderHistory = () => {
                             order.map((myOrder, index) => (
                                 <tr key={myOrder._id}>
                                 <td>{index + 1}</td>
-                                <td>{myOrder._id}</td>
+                                <td className='text-break'>{myOrder._id}</td>
                                 <td>{myOrder.totalAmount.toLocaleString()}</td>
                                 <td>
                                     <span className={`badge bg-${myOrder.status ==="pending" ? "warning" : "success"}`}>
@@ -48,6 +51,35 @@ const OrderHistory = () => {
                     </tbody>
 
                 </table>
+                </div>
+                {/* // On Mobile device */}
+                <div className='d-block d-md-none'>
+                {
+                            order.map((myOrder, index) => (
+                                <div key={myOrder._id} className='card mb-3 shadow-sm'>
+                               <div className='card-body'>
+                               <h6 className='card-title mb-2'>Order #{index + 1}</h6>
+                                <p className='mb-1'><strong>Order ID:</strong>{myOrder._id}</p>
+                                <p className='mb-1'><strong>Total:</strong>#{myOrder.totalAmount.toLocaleString()}</p>
+                                <p className='mb-1'>
+                                    <strong>Status:</strong>{ ' '}
+                                    <span className={`badge bg-${myOrder.status ==="pending" ? "warning" : "success"}`}>
+                                    {myOrder.status}
+                                    </span>
+                                </p>
+                                <p className='mb-1'><strong>Date:</strong>{new Date(myOrder.createdAt).toLocaleString()}</p>
+                                
+
+                               </div>
+
+                            </div>
+
+                            ))
+                        }
+
+
+                </div>
+                </>
             )
         }
 

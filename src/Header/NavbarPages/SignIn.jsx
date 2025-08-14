@@ -57,10 +57,10 @@ const SignIn = () => {
   return (
     <div className='container my-5'>
 
-      <div className='row justify-content-center' style={{marginTop : "80px"}}>
+      <div className='row justify-content-center' style={{marginTop : "100px"}}>
          <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
          <h4 className='text-center mb-4'>Sign in</h4>
-        <form action="" className='form-control w-50 p-4 bg-light' onSubmit={handleSubmit(submitForm)}>
+        <form action="" className='form-control p-4 bg-light' onSubmit={handleSubmit(submitForm)}>
 
           <div className='mb-3'>
             <label htmlFor="name" className='form-label'>Email: </label>
