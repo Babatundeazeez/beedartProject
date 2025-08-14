@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchForm from './SearchForm'
 import ProductCatelog from '../Frames/ProductCatelog'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   return (
@@ -25,9 +26,8 @@ const Home = () => {
                Framed Digital Gifts for Every Occassion
             </p>
             
-            <a href="/product" className='btn btn-secondary px-4 py-2'>
-              Shop Now
-            </a>
+           
+            <Link to="/product" className='btn btn-secondary px-4 py-2'>Shop Now</Link>
 
           </div>
 
