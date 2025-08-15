@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form'
 import axios from "axios"
 import { authContext } from './AuthContext'
 import UpdateStatus from './UpdateStatus'
+import BlogContet from './BlogContet'
 
 const Admin = () => {
     const {register, handleSubmit} = useForm()
@@ -45,7 +46,7 @@ const Admin = () => {
 
   return (
     <div className='container my-5'>
-        <h2 className='text-center' style={{marginTop : "110px"}}>Welcome Back</h2>
+        <h2 className='text-center' style={{marginTop : "110px"}}>Welcome Back to Admin page</h2>
     <div className='row'>
         <div className='col-ms-6 col-md-6'>
         <div className='card shadow'>
@@ -115,8 +116,8 @@ const Admin = () => {
         </div>
         </div>
         <div className='col-6'>
-            <h2></h2>
-            {/* <UpdateStatus /> */}
+            <h2>Blog Post </h2>
+            <BlogContet />
 
         </div>
 
