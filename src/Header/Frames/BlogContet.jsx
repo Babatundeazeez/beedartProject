@@ -3,6 +3,7 @@ import React from 'react'
 const BlogContet = () => {
   return (
     <div className='row'>
+        <div className='col-sm-6 col-md-6'>
         <div className='card shadow'>
             <div className='card-body'>
                 <form action="" className='form'>
@@ -26,6 +27,8 @@ const BlogContet = () => {
                 </form>
 
             </div>
+
+        </div>
 
         </div>
 
