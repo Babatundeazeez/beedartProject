@@ -8,7 +8,7 @@ const Footer = () => {
 
                  {/* Brand Info */}
                 <div className="col-md-4 mb-3 mt-5">
-                    <h5>BeedahArt</h5>
+                    <h5>BeedahArts</h5>
                     <p>
                     We craft premium Arabic calligraphy frames that blend faith, beauty, and elegance.
                     </p>

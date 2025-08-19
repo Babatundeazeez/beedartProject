@@ -16,8 +16,8 @@ const ContactUsPage = () => {
         <div className='row justify-content-center'>
             <div className='col-md-8'>
 
-            <h1 className="mb-4 text-center">Contact BeedahArt</h1>
-                 <p className="text-center">
+            <h1 className="mb-4 text-center text-info">Contact BeedahArt</h1>
+                 <p className="text-center text-info">
                     Have a question, custom order, or feedback? We'd love to hear from you.
                 </p>
 

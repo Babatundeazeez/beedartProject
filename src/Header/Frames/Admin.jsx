@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import {useForm} from 'react-hook-form'
 import axios from "axios"
 import { authContext } from './AuthContext'
-import UpdateStatus from './UpdateStatus'
 import BlogContet from './BlogContet'
+import BlogContent from './BlogContent'
 
 const Admin = () => {
     const {register, handleSubmit} = useForm()
@@ -46,26 +46,26 @@ const Admin = () => {
 
   return (
     <div className='container my-5'>
-        <h2 className='text-center' style={{marginTop : "110px"}}>Welcome Back to Admin page</h2>
-    <div className='row'>
+        <h3 className='text-center text-info' style={{marginTop : "110px"}}>Welcome Back to Admin page</h3>
+    <div className='row '>
         <div className='col-ms-6 col-md-6'>
         <div className='card shadow'>
             <div className='card-body'>
 
                 <form action="" className='form' onSubmit={handleSubmit(AdminAddProduct)}>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="image">Image: </label>
                         <input className='form-control' type="file" name="" id="image" placeholder='choose your frame'  {...register("image")} />
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="name">product Name: </label>
                         <input type="text" className='form-control' id='productName' placeholder='Product name' {...register("productName")} />
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="price">Price: </label>
                         <input type="number" className='form-control' id="price" placeholder='Enter price' {...register("price")} />
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="size">Size: </label>
                       
                         <select 
@@ -79,7 +79,7 @@ const Admin = () => {
                             <option value="Large">Large</option>
                         </select>
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="size">Category: </label>
                       
                         <select 
@@ -93,7 +93,7 @@ const Admin = () => {
                             <option value="Classic">Classic</option>
                         </select>
                     </div>
-                    <div>
+                    <div className='mb-3'>
                         <label htmlFor="size">Occasion: </label>
                        
                         <select 
@@ -108,18 +108,23 @@ const Admin = () => {
                         </select>
      
                     </div>
-                    <button className='btn btn-primary' type='submit'>Add Product</button>
+                   <div className='mb-3'>
+                   <button className='btn btn-primary' type='submit'>Add Product</button>
+                   </div>
                 </form>
 
             </div>
 
         </div>
         </div>
-        <div className='col-6'>
-            <h2>Blog Post </h2>
-            <BlogContet />
+               
+           <div className='mt-5'>
+           <h5 className='text-info'>Blog Post </h5>
+           <BlogContent />
+           {/* <BlogContet /> */}
+           </div>
 
-        </div>
+        
 
     </div>
     </div>
