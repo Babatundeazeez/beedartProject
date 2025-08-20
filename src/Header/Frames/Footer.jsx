@@ -32,8 +32,8 @@ const Footer = () => {
                             <p>Email: <a href="mailto:support@beedahart.com" className="text-light">support@beedahart.com</a></p>
                             
                             
-                            <p>Phone: +234 9031 5782 21</p>
-                            <p>Sagamu, Nigeria</p>
+                            <p>Phone: +234 8169 422 631</p>
+                            <p>Ogun State,. Nigeria</p>
                         </div>
                         </div>
 

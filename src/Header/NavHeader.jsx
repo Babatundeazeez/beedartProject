@@ -13,7 +13,7 @@ const NavHeader = () => {
         {/* Brand + Tagline */}
       <div className=' d-flex flex-column align-items-start'>
         <Link className='navbar-brand fw-bold fs-4 mb-0' to="/">
-        BeedahARTs
+        BeedahArts
         </Link>
      
 

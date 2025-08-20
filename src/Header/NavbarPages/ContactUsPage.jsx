@@ -12,7 +12,7 @@ const ContactUsPage = () => {
     
   return (
     <div className='conatiner my-5'>
-         <h2 className='' style={{marginTop : "110px"}}>Contact Page </h2>
+         <h2 className='' style={{marginTop : "110px"}}> </h2>
         <div className='row justify-content-center'>
             <div className='col-md-8'>
 
@@ -45,9 +45,9 @@ const ContactUsPage = () => {
 
                 <div className='mt-5'>
                 <h5>📞 Contact Information</h5>
-                     <p>Email: <Link to="/mailto:support@beedahart.com" className='text-light text-decoration-none'>support@beedahArt.</Link></p>
-                    <p>Phone: +234 000 000 0000</p>
-                    <p>Instagram: <a href="https://instagram.com/beedahart" target="_blank" rel="noreferrer">@beedahart</a></p>
+                     <p>Email: <Link to="/mailto:support@BeedahArt.com" className='text-light text-decoration-none'>BeedahArt@gmail.com</Link></p>
+                    <p>Phone: +234 8169 4226 31</p>
+                    <p>Instagram: <a href="https://instagram.com/beedahart" target="_blank" rel="noreferrer">beedahAat</a></p>
                   
                 </div>
 
