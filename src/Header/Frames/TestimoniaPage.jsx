@@ -110,7 +110,7 @@ const TestimoniaPage = () => {
         <Slider {...settings}>
             {
                 testimonials.map((text, index) => (
-                    <div key={index} className='p-3'>
+                    <div key={index} className=' col-12 col-md-6 col-lg-4 p-3'>
                         <div className='card shadow-sm p-4 border-0 h-100'>
                             <div className='d-flex align-items-center gap-2 mb-3'>
                                 <img src={text.image} alt="customer" className='rounded-circle me-3' width= "60" height="60" />
