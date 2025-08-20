@@ -65,7 +65,7 @@ const BlogContent = () => {
     }
 
   return (
-    <div className='container' style={{marginTop : "0px"}}>
+    <div className='container about-content' style={{marginTop : "0px"}}>
         <h3>Create New Blog Post</h3>
        <div className='col-ms-6 col-md-6 '>
         <div className='card shadow'>

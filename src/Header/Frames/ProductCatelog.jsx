@@ -14,7 +14,6 @@ const ProductCatelog = () => {
         <div className='row'>
         <h4 className=' fw-bold bg-secondary p-2'>Frame Product</h4>
            <div className='d-flex overflow-auto pb-3' style={{gap : "1rem", scrollSnapType : "x mandatory"}}>
-            
            {product && product.map((products)=>(
                 <div className='col-md-2 mb-4' key={products._id} style={{minWidth : "200px", maxWidth : "200px", scrollSnapAlign : "start", flex : "0 0 auto"}}>
 

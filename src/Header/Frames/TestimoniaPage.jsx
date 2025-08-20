@@ -105,8 +105,8 @@ const TestimoniaPage = () => {
     ]
 
   return (
-    <div className='container my-5 mt-5'>
-        <h2 className='text-center mb-4'>What Our Customer Says</h2>
+    <div className='container about-content my-5 mt-5'>
+        
         <Slider {...settings}>
             {
                 testimonials.map((text, index) => (
@@ -121,15 +121,16 @@ const TestimoniaPage = () => {
                                 <small className='text-muted'>{text.location}</small>
 
                             </div>
+                            <div className='mt-2'>
+                                 <p className='fst-italic'>{text.text}</p>
+                                <div className='text-warning fs-5'>
+                                {"★".repeat(text.rating)}{"★".repeat(5- text.rating)}
+
+                                </div>
+                             </div>
 
                         </div>
-                        <div className='mt-2'>
-                        <p className='fst-italic'>{text.text}</p>
-                        <div className='text-warning fs-5'>
-                            {"★".repeat(text.rating)}{"★".repeat(5- text.rating)}
-
-                        </div>
-                        </div>
+                       
 
                     </div>
                 ))

@@ -34,7 +34,7 @@ const SingleBlog = () => {
     },[])
 
   return (
-    <div className='container' style={{marginTop : "120px"}}>
+    <div className='container about-content' style={{marginTop : "120px"}}>
         
             {
                 isLoading ? (

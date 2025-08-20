@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const AboutUs = () => {
   return (
     
-         <div className="container" style={{ marginTop: "120px", padding: "20px" }}>
+         <div className="container about-content" style={{ marginTop: "120px", padding: "20px" }}>
       <div className="row justify-content-center">
         <div className="col-lg-10 col-md-11 col-sm-12">
           <h1 className="mb-4 text-center text-info">About BeedahArt</h1>

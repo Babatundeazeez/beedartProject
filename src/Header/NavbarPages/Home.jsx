@@ -7,9 +7,10 @@ import TestimoniaPage from '../Frames/TestimoniaPage'
 
 const Home = () => {
   return (
-    <div className='container-fluid'>
-      {/* first section....................................... */}
-      <div className='container mt-5 '>
+    <div className='container-fluid' style={{paddingTop : "50px"}}>
+      {/* first section.........sticky.............................. */}
+     <div className='sticky-search'>
+     <div className='container py-2'>
         <div className='row justify-content-center '>
              <div className='col-12 col-md-10 col-lg-8'>
                  <SearchForm />
@@ -20,6 +21,7 @@ const Home = () => {
 
 
       </div>
+     </div>
 
       {/* hero section ....................................*/}
 
@@ -27,19 +29,21 @@ const Home = () => {
       
        <div className='container'>
        
-           <div className='row justify-content-center'>
-              <div className=' col-12 col-md-8 col-lg-8'>
-                  <h1 className='display-5 fw-bold display-md-4 display-lg-3'>
-                  Eligant Arabic Calligraphy
+           <div className='row justify-content-center text-center'>
+              <div className=' col-12 col-md-8 '>
+                  <h1 className='display-4 fw-bold display-md-4 display-lg-3'>
+                  Elegant Arabic Calligraphy
                   </h1>
 
-                   <p className='lead mt-3 mb-4 px-2'>
-                      Framed Digital Gifts for Every Occassion
+                   <p className='lead mt-5 mb-4 px-2'>
+                      Framed Digital Gifts for Every Occasion
                   </p>
             
            
-                   <Link to="/product" className='btn btn-secondary px-4 py-2'>Shop Now</Link>
+                  <div className=''>
+                  <Link to="/product" className='btn btn-secondary  px-1 py-1'>Shop Now</Link>
 
+                  </div>
              </div>
 
            </div>
