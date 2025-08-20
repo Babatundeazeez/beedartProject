@@ -40,12 +40,13 @@ const TestimoniaPage = () => {
 
             },
             {
-                breakpoint: 768, /////Small
+                breakpoint: 576,  // extra small devices (phones)
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
+                  slidesToShow: 1,
+                  slidesToScroll: 1
                 }
-            }
+              }
+           
         ]
 
     };
@@ -108,37 +109,33 @@ const TestimoniaPage = () => {
     <div className='container about-content my-5 mt-5'>
         
         <Slider {...settings}>
-        <div className='row g-3'>
             {
-                
                 testimonials.map((text, index) => (
-                    <div key={index} className=' col-12 col-md-6 col-lg-4 p-3'>
+                    <div key={index} className='p-3'>
                         <div className='card shadow-sm p-4 border-0 h-100'>
                             <div className='d-flex align-items-center gap-2 mb-3'>
                                 <img src={text.image} alt="customer" className='rounded-circle me-3' width= "60" height="60" />
 
                             </div>
-                            
+                            <div className=''>
                                 <h6 className='mb-0'>{text.name}</h6>
                                 <small className='text-muted'>{text.location}</small>
 
-                            
+                            </div>
                             <div className='mt-2'>
                                  <p className='fst-italic'>{text.text}</p>
                                 <div className='text-warning fs-5'>
                                 {"★".repeat(text.rating)}{"★".repeat(5- text.rating)}
 
                                 </div>
-                             </div>
+                         </div>
 
                         </div>
                        
 
                     </div>
                 ))
-                
             }
-            </div>
 
         </Slider>
 

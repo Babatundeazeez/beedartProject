@@ -55,3 +55,17 @@ body{
     text-align: justify;
     text-justify: inter-word;
 }
+
+.slick-slide {
+    display: flex !important;   /* make each slide behave like flex */
+    justify-content: center;    /* center the card */
+  }
+  
+  .slick-slide > div {
+    height: 100%;  /* make the slide content stretch */
+  }
+  
+  .card {
+    height: 100%;  /* keep all cards equal height */
+  }
+  
