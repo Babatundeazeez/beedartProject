@@ -21,9 +21,14 @@ const Admin = () => {
         formData.append('image', data.image[0]);
         
         try {
-            const productURL = import.meta.env.VITE_BASE_URL
+            
             const token = localStorage.getItem("accessToken")
-            const res = await axios.post(`${productURL}`,formData, {
+            if(!token){
+                alert("Unauthorized! Please login as an Admin.");
+                return
+            }
+            const productURL = import.meta.env.VITE_BASE_URL
+            const res = await axios.post(`${productURL}/product`,formData, {
                 headers : {
                     "Content-Type" : "multipart/form-data",
                     Authorization : `Bearer ${token}`
@@ -37,8 +42,8 @@ const Admin = () => {
             
         
         } catch (error) {
-            console.log(error);
-            alert("failed to create product")
+            console.log("Product creation Failed:",error.response?.data || error.message);
+            alert(error.response?.data?.message || "Failed to create product")
             
         }
     }
@@ -121,7 +126,7 @@ const Admin = () => {
            <div className='mt-5'>
            <h5 className='text-info'>Blog Post </h5>
            <BlogContent />
-           {/* <BlogContet /> */}
+           
            </div>
 
         

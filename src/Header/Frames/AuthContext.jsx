@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
+import {jwtDecode} from "jwt-decode";
 
 export const authContext = createContext()
 export const useAuth = () => useContext(authContext)
 
 const AuthProvider = ({children}) => {
+    const [user, setUser] = useState(null)
 
     const [product, setProduct] = useState([])
     const [filtered, setFiltered] = useState([])
@@ -31,14 +33,29 @@ const AuthProvider = ({children}) => {
     
 
     const baseURL = import.meta.env.VITE_BASE_URL
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("accessToken")
 
 
     useEffect(()=>{
 
-        const user = JSON.parse(localStorage.getItem("user"));
-        if(user){
-            setCurrentUser(user)
+        // const user = JSON.parse(localStorage.getItem("user"));
+        // if(user){
+        //     setCurrentUser(user)
+        // }
+
+        const token = localStorage.getItem("accessToken")
+        const role = localStorage.getItem("role")
+        if(token){
+            try {
+                const decoded = jwtDecode(token)
+                setUser({...decoded, role})
+                
+            } catch (error) {
+                console.log("Invaid Token", error);
+                setUser(null)
+                
+                
+            }
         }
 
     },[])
@@ -252,6 +269,16 @@ const AuthProvider = ({children}) => {
     }
     /////////////////////////////////////////////////////
 
+    const Isauthenticate = () =>{
+        const accessToken = localStorage.getItem("accessToken")
+        if(accessToken){
+            return true
+        }
+        else{
+            return false
+        }
+    }
+
 
     const value = {
         verifyUser,
@@ -259,6 +286,8 @@ const AuthProvider = ({children}) => {
         verificationAccount,
         currentUser,
         setCurrentUser,
+
+        Isauthenticate,
 
 
 
@@ -285,7 +314,10 @@ const AuthProvider = ({children}) => {
 
         order,
         getOrder,
-        getCurrentUser
+        getCurrentUser,
+
+        user,
+        setUser
 
     }
     return(

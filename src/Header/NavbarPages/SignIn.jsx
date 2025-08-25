@@ -38,12 +38,26 @@ const SignIn = () => {
       alert('sign in successfully')
       reset()
       
-      localStorage.setItem("token", accessToken);
-      localStorage.setItem("userId", user._id);
-      navigate('/product')
 
-    }else{
-      alert("sign in failed")
+      // Save token and role correctly
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("userId", user._id);
+      localStorage.setItem("role", user.role || "user")
+      console.log("role", user.role);
+      
+      console.log("Logged In User:",user);
+
+
+      if(user.role === "admin"){
+        navigate("/admin")
+      } 
+      else{
+        navigate("/product")
+      }
+
+    }
+    else{
+      alert("Sign In Failed")
     }
 
     

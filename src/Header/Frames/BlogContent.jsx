@@ -93,7 +93,7 @@ const BlogContent = () => {
                          <ReactQuill id='content' value={content} onChange={setContent} modules={modules} theme='snow' style={{height : "200px", marginBottom : "50px"}} />
 
                     </div>
-                    <div className='mb-3'>
+                    <div className='mb-3 mt-5'>
                         <button className='btn btn-primary' disabled={isLoading}>{isLoading ? "Create..." : "Create Blog"}</button>
                     </div>
                 </form>

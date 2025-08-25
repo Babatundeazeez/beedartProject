@@ -24,7 +24,7 @@ const CheckOutPage = () => {
     
        console.log(currentUser);
        
-        const token = localStorage.getItem("token")
+        const token = localStorage.getItem("accessToken")
         if (!token){
             alert("You are not logged in, Please log in first");
             return

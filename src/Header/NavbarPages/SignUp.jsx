@@ -62,6 +62,7 @@ const SignUp = () => {
         <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
         <h4 className='text-center mb-4'>Welcome to SignUp page</h4>
         <form action="" className='form-control bg-light p-4' onSubmit={handleSubmit(submitForm)}>
+
         <p className='d-flex justify-content-center'>Kindly sign up.......</p>
 
         <div className='mb-3'>
@@ -69,14 +70,16 @@ const SignUp = () => {
           <input className='form-control mt-1' type="text" name="" id="name" placeholder='Enter your name' {...register('name')} /> 
         </div>
 
-        <div className='mb-3'>
-          <label htmlFor="name" className='form-label'>Last Name:</label>
-          <input className='form-control' type="text" name="" id="Lname" placeholder='Enter your last name' {...register('Lname')} />
-        </div>
+       
 
         <div className='mb-3'>
           <label htmlFor="name" className='form-label'>Middle Name:</label>
           <input className='form-control' type="text" name="" id="Mname" placeholder='Enter your middle name' {...register('Mname')}/>
+        </div>
+
+        <div className='mb-3'>
+          <label htmlFor="name" className='form-label'>Last Name:</label>
+          <input className='form-control' type="text" name="" id="Lname" placeholder='Enter your last name' {...register('Lname')} />
         </div>
         
         <div className='mb-3'>

@@ -12,6 +12,7 @@ import Blogs from "./Header/NavbarPages/Blogs"
 import ContactUsPage from "./Header/NavbarPages/ContactUsPage"
 import Home from "./Header/NavbarPages/Home"
 import Product from "./Header/NavbarPages/Product"
+import ProtectedRoute from "./Header/NavbarPages/ProtectedRoute"
 import SignIn from "./Header/NavbarPages/SignIn"
 import SignUp from "./Header/NavbarPages/SignUp"
 import SingleBlog from "./Header/NavbarPages/SingleBlog"
@@ -38,7 +39,11 @@ function App() {
      <Route path="/product" element={<Product />} />
      <Route path="/signIn" element={<SignIn />} />
      <Route path="/signUp" element = {<SignUp />} />
-     <Route  path="/admin" element = {<Admin />}/>
+
+     <Route element ={<ProtectedRoute />}>
+     <Route path="/admin" element={ <Admin />} />
+
+     </Route>
      <Route path="/singleProduct/:id" element = {<SingleProductPage />} />
      <Route path="/cartPage" element = {<CartPage />} />
      <Route path="/checkOutPage" element = {<CheckOutPage />} />

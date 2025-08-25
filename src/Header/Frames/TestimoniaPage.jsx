@@ -122,14 +122,15 @@ const TestimoniaPage = () => {
                                 <small className='text-muted'>{text.location}</small>
 
                             </div>
-                            <div className='mt-2'>
+                            
+
+                        </div>
+                        <div className='mt-2'>
                                  <p className='fst-italic'>{text.text}</p>
                                 <div className='text-warning fs-5'>
                                 {"★".repeat(text.rating)}{"★".repeat(5- text.rating)}
 
                                 </div>
-                         </div>
-
                         </div>
                        
 
