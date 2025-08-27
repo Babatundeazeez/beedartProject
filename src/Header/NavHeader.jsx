@@ -88,7 +88,7 @@ const NavHeader = () => {
 
             </ul>
             {/* cart Desktop */}
-            <Link to="/cartPage" className='btn btn-outline-light ms-lg-3 mt-3 mt-lg-0  ' onClick={handleCloseMenu}>
+            <Link to="/cartPage" className='btn btn-outline-light ms-lg-3 mt-3 mt-lg-0  ' onClick={handleCloseMenu} >
                      Cart ({cartProduct.length})
              </Link>
 

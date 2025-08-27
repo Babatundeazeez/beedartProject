@@ -35,6 +35,7 @@ const SignUp = () => {
       })
       const display = await res.json()
       console.log(display);
+      
       if (res.ok){
         alert("sign Up successfully, please check your email for verification")
         reset()
@@ -64,6 +65,7 @@ const SignUp = () => {
       <div className='row justify-content-center' style={{marginTop : "100px"}}>
         <div className='col-12 col-sm-8 col-md-6 col-lg-4'>
         <h4 className='text-center mb-4'>Welcome to SignUp page</h4>
+
         <form action="" className='form-control bg-light p-4' onSubmit={handleSubmit(submitForm)}>
 
         <p className='d-flex justify-content-center'>Kindly sign up.......</p>
