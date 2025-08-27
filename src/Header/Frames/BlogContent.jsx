@@ -32,11 +32,11 @@ const BlogContent = () => {
             formData.append("header", data.header),
             formData.append("content", content)
 
-           // const token = localStorage.getItem("accessToken")
+            const token = localStorage.getItem("accessToken")
            
             const res = await axios.post(`${BlogURL}/blog`, formData, {
                 headers: {
-                   // Authorization : `Bearer ${token}`,
+                    Authorization : `Bearer ${token}`,
                     "Content-Type" : "multipart/form-data"
                 }
             })

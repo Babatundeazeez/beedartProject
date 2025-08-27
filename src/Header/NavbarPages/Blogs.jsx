@@ -7,14 +7,14 @@ const Blogs = () => {
   const [isBlogLoading, setIsBlogLoading] = useState(false)
 
   const blogPages = async() =>{
-    //const blogURL = import.meta.env.VITE_BASE_URL 
+    const blogURL = import.meta.env.VITE_BASE_URL 
     const token = localStorage.getItem("accessToken")
     console.log(token);
     setIsBlogLoading(true)
 
     try {
       const BlogURL = import.meta.env.VITE_BASE_URL
-      const res = await axios.get(`${BlogURL}/blog`, {
+      const res = await axios.get(`${blogURL}/blog`, {
         headers :{
           Authorization : `Bearer ${token}`
         }

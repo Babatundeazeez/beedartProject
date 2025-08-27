@@ -28,7 +28,7 @@ const Admin = () => {
                 return
             }
             const productURL = import.meta.env.VITE_BASE_URL
-            const res = await axios.post(`${productURL}/product`,formData, {
+            const res = await axios.post(`http://localhost:1500/api/product`,formData, {
                 headers : {
                     "Content-Type" : "multipart/form-data",
                     Authorization : `Bearer ${token}`

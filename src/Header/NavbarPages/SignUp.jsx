@@ -40,12 +40,15 @@ const SignUp = () => {
         reset()
         navigate("/signIn")
       }
-      
+      else{
+        alert(display.message || "Sign Up Failed")
+
+      }
 
       
     } catch (error) {
       console.log(error, "Network Error");
-      
+     
     }
     
   }

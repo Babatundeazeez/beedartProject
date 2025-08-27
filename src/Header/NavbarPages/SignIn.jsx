@@ -18,11 +18,13 @@ const SignIn = () => {
   })
 
   const navigate = useNavigate()
-  const userUrl = import.meta.env.VITE_BASE_URL
+  
+
   const submitForm = async(data) =>{
   //console.log(data);
 
   try {
+    const userUrl = import.meta.env.VITE_BASE_URL
     const res = await fetch(`${userUrl}/auth/signIn`, {
       method : "POST",
       headers : {
@@ -32,6 +34,7 @@ const SignIn = () => {
     })
     /////////
     const responseData = await res.json()
+
     const {accessToken, status, user } = responseData
 
     if (status === "success"){
@@ -58,6 +61,7 @@ const SignIn = () => {
     }
     else{
       alert("Sign In Failed")
+      
     }
 
     
@@ -79,10 +83,13 @@ const SignIn = () => {
           <div className='mb-3'>
             <label htmlFor="name" className='form-label'>Email: </label>
             <input type="email" className='form-control' id='email' placeholder='Enter your email address' {...register('email')} />
+            {errors.email && <p className="text-danger">{errors.email.message}</p>}
+
           </div>
           <div className='mb-3'>
             <label htmlFor="pasword" className='form-label'>Password: </label>
             <input type="password" className='form-control' id="password" placeholder='Enter your password here' {...register('password')} />
+            {errors.password && <p className="text-danger">{errors.password.message}</p>}
           </div>
           <button className='btn btn-primary w-100'>Sign In</button>
         </form>
