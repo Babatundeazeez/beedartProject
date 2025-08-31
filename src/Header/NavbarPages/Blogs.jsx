@@ -15,8 +15,8 @@ const Blogs = () => {
     try {
       const BlogURL = import.meta.env.VITE_BASE_URL
       const res = await axios.get(`${blogURL}/blog`, {
-        headers :{
-          Authorization : `Bearer ${token}`
+        headers:{
+          Authorization: `Bearer ${token}`
         }
       })
       setBlogContent(res.data.blogPost)

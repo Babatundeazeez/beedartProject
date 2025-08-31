@@ -1,8 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import * as yup from "yup"
+import ModalComponent from '../Frames/ModalComponent'
+import { authContext } from '../Frames/AuthContext'
 
 const signInSchema = yup.object({
   email : yup.string().email("Enter a valid email address").required("email is required"),
@@ -18,17 +20,27 @@ const SignIn = () => {
   })
 
   const navigate = useNavigate()
+  const {showModal,
+    setShowModal,
+    modalText, 
+    setModalText,
+    modalStatus, 
+    setModalStatus} = useContext(authContext)
+ 
+ // const [isLoading, setIsLoading] = useState(false)
+
   
 
   const submitForm = async(data) =>{
   //console.log(data);
-
+//setIsLoading(true)
   try {
+    
     const userUrl = import.meta.env.VITE_BASE_URL
     const res = await fetch(`${userUrl}/auth/signIn`, {
       method : "POST",
-      headers : {
-        "Content-Type" : "application/json"
+      headers: {
+        "Content-Type": "application/json"
       },
       body : JSON.stringify(data)
     })
@@ -38,7 +50,10 @@ const SignIn = () => {
     const {accessToken, status, user } = responseData
 
     if (status === "success"){
-      alert('sign in successfully')
+      //alert('sign in successfully')
+      setShowModal(true)
+      setModalText("Sign In Successfully")
+      setModalStatus("success")
       reset()
       
 
@@ -52,23 +67,42 @@ const SignIn = () => {
 
 
       if(user.role === "admin"){
-        navigate("/admin")
+        setTimeout(()=>{
+          setShowModal(false)
+          navigate("/admin")
+        },3000)
+        // navigate("/admin")
       } 
       else{
-        navigate("/product")
+        setTimeout(()=>{
+          setShowModal(false)
+          navigate("/product")
+        },3000)
+       // navigate("/product")
       }
 
     }
+
+
     else{
-      alert("Sign In Failed")
+      setModalStatus("unsuccessful")
+      setModalText("invalid credential")
+      setShowModal(true)
+      //alert("Sign In Failed")
       
     }
 
     
   } catch (error) {
     console.error("Error during sign in:", error);
-    alert("An error occurred during sign in");
+    //alert("An error occurred during sign in");
+    setModalStatus("unsuccessful")
+    setModalText("invalid credential")
+    setShowModal(true)
   }
+  // finally{
+  //   isLoading(false)
+  // }
 
 
   }
@@ -91,7 +125,17 @@ const SignIn = () => {
             <input type="password" className='form-control' id="password" placeholder='Enter your password here' {...register('password')} />
             {errors.password && <p className="text-danger">{errors.password.message}</p>}
           </div>
-          <button className='btn btn-primary w-100'>Sign In</button>
+          
+          <div className='mt-2'>
+            {/* <Button text='sign In' color='success' onClick={handleSubmit(submitForm)} loading={isLoading}></Button> */}
+            <button className='btn btn-primary w-100'>Sign In</button>
+            <ModalComponent 
+            show={showModal}
+            onClose={()=> setShowModal(false)}
+            title={modalStatus}
+            message={modalText} />
+            
+          </div>
         </form>
 
          </div>

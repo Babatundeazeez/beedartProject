@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
-import { useAuth } from './AuthContext'
+import React, { useContext, useEffect } from 'react'
+import { authContext, useAuth } from './AuthContext'
 import axios from 'axios'
+import ModalComponent from './ModalComponent'
 
 const CheckOutPage = () => {
 
     const {cartProduct, setCartProduct,currentUser, getCurrentUser} = useAuth()
+     const {showModal,setShowModal,modalText, setModalText,modalStatus, setModalStatus} = useContext(authContext)
     useEffect(()=>{
         getCurrentUser()
     },[])
@@ -26,7 +28,11 @@ const CheckOutPage = () => {
        
         const token = localStorage.getItem("accessToken")
         if (!token){
-            alert("You are not logged in, Please log in first");
+           // alert("You are not logged in, Please log in first");
+            setShowModal(true)
+            setModalText("You are not logged in, Please log in first")
+            setModalStatus("success")
+
             return
         }
 
@@ -53,8 +59,12 @@ const CheckOutPage = () => {
                 })
                
                 if (res.data.status === "success"){
-                    alert("Payment successful! Order placed.")
-                    alert(res.data.message);
+                    //alert("Payment successful! Order placed.")
+                    setShowModal(true)
+                    setModalText("Payment successful! Order placed.")
+                    setModalStatus("success")
+
+                   // alert(res.data.message);
                     setCartProduct([])
                     localStorage.removeItem("cart")
                 }
@@ -62,7 +72,10 @@ const CheckOutPage = () => {
                } catch (error) {
                 console.error("Failed to placed order after payment", error)
                 console.log("Failed to place order",error);
-                alert("There was a problem occur when placing your order")
+                //alert("There was a problem occur when placing your order")
+                setModalStatus("unsuccessful.....")
+                setModalText("There was a problem occur when placing your order")
+                setShowModal(true)
                 console.log("Token:", token);
                 
                 
@@ -76,12 +89,17 @@ const CheckOutPage = () => {
 
         if(!publicKeys){
             alert("Missing Paystack public key. Please check your environmental variables")
+
             return;
         }
         
         console.log(publicKeys);
         if(!publicKeys || !email){
-            alert("Missing paystack key or user email");
+           // alert("Missing paystack key or user email");
+            setShowModal(true)
+            setModalText("Missing paystack key or user email")
+            setModalStatus("success")
+
             return;
         }
 
@@ -171,6 +189,12 @@ const CheckOutPage = () => {
        <div className='d-flex justify-content-between align-items-center mt-3 flex-column flex-md-row'>
        <h4 className='mb-3 mb-md-0'>Total: #{totalAmount.toLocaleString(undefined, {minimumFractionDigits: 2})}</h4>
         <button className='btn btn-primary mb-2' onClick={handlePlaceOrder}>Place Order</button>
+        <ModalComponent 
+         show={showModal}
+         onClose={()=> setShowModal(false)}
+         title={modalStatus}
+         message={modalText} 
+         />
 
        </div>
 

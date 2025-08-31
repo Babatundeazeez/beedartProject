@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import ReactQuill from "react-quill-new"
 
 import "react-quill-new/dist/quill.snow.css";
+import { authContext } from './AuthContext';
+import ModalComponent from './ModalComponent';
 
 const BlogContent = () => {
     const {register, handleSubmit, reset} = useForm()
     const [content, setContent] = useState("")
+    const {showModal,setShowModal,modalText, setModalText,modalStatus, setModalStatus} = useContext(authContext)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -22,6 +25,7 @@ const BlogContent = () => {
     };
 
     const submitBlog = async(data) =>{
+
        
         try {
             const BlogURL = import.meta.env.VITE_BASE_URL
@@ -36,13 +40,16 @@ const BlogContent = () => {
            
             const res = await axios.post(`${BlogURL}/blog`, formData, {
                 headers: {
-                    Authorization : `Bearer ${token}`,
-                    "Content-Type" : "multipart/form-data"
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data"
                 }
             })
             
-            alert(`Blog Post Created successfully`)
+            //alert(`Blog Post Created successfully`)
             console.log(res.data);
+            setShowModal(true)
+            setModalText("Blog Post Created Successfully")
+            setModalStatus("success")
 
             reset()
             setContent("")
@@ -54,7 +61,10 @@ const BlogContent = () => {
         } catch (error) {
             console.log(error);
             console.log(error, "failed to upload blog post");
-            alert("Failed to create blog post")
+           // alert("Failed to create blog post")
+            setModalStatus("unsuccessful")
+            setModalText("Failed to create blog Post")
+            setShowModal(true)
             
         }
         finally{
@@ -90,14 +100,24 @@ const BlogContent = () => {
                     <div className='mb-3'>
                         <label htmlFor="content" className='form-label'>Content: </label>
                         
-                         <ReactQuill id='content' value={content} onChange={setContent} modules={modules} theme='snow' style={{height : "200px", marginBottom : "50px"}} />
+                         <ReactQuill id='content' value={content} onChange={setContent} modules={modules} theme='snow' style={{height : "100px", marginBottom : "50px"}} />
 
                     </div>
-                    <div className='mb-3 mt-5'>
-                        <button className='btn btn-primary' disabled={isLoading}>{isLoading ? "Create..." : "Create Blog"}</button>
+                    <div className='mt-5'>
+                        <button className='btn btn-primary' disabled={isLoading}>{isLoading ? "Create..." : "Create Blog"}
+
+                        </button>
+                        <ModalComponent 
+                        show={showModal}
+                        onClose={()=> setShowModal(false)}
+                        title={modalStatus}
+                        message={modalText}
+                         />
                     </div>
+
+                   
                 </form>
-            
+               
 
             </div>
 

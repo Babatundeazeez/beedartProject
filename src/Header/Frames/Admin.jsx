@@ -1,17 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import {useForm} from 'react-hook-form'
 import axios from "axios"
 import { authContext } from './AuthContext'
 import BlogContet from './BlogContet'
 import BlogContent from './BlogContent'
+import ModalComponent from './ModalComponent'
 
 const Admin = () => {
     const {register, handleSubmit} = useForm()
     const {order} = useContext(authContext)
 
+    const {showModal,setShowModal,modalText, setModalText,modalStatus, setModalStatus} = useContext(authContext)
+    const [isLoading, setIsLoading] = useState(false)
+
     const AdminAddProduct = async(data)=>{
         console.log(data);
-
+        setIsLoading(true)
         const formData = new FormData();
         formData.append('productName', data.productName);
         formData.append('price', data.price);
@@ -24,13 +28,19 @@ const Admin = () => {
             
             const token = localStorage.getItem("accessToken")
             if(!token){
-                alert("Unauthorized! Please login as an Admin.");
+               // alert("Unauthorized! Please login as an Admin.");
+                setShowModal(true)
+                setModalText("Unauthorized! Please login as an Admin.")
+                setModalStatus("success")
                 return
             }
             const productURL = import.meta.env.VITE_BASE_URL
-            const res = await axios.post(`${productURL}/product`,formData, {
-                headers : {
-                    "Content-Type" : "multipart/form-data",
+            const res = await axios.post(
+                `${productURL}/product`,
+                formData, 
+                {
+                headers: {
+                    "Content-Type": "multipart/form-data",
                     Authorization : `Bearer ${token}`
                 }
 
@@ -38,13 +48,23 @@ const Admin = () => {
             console.log("Created",res.data);
             console.log(token);
 
-            alert("product created successfully")
+           // alert("product created successfully")
+            setShowModal(true)
+            setModalText("Product Created Successfully")
+            setModalStatus("success")
+
             
         
         } catch (error) {
             console.log("Product creation Failed:",error.response?.data || error.message);
             alert(error.response?.data?.message || "Failed to create product")
+            setModalStatus("unsuccessful")
+            setModalText("Failed to create Product")
+            setShowModal(true)
             
+        }
+        finally{
+            setIsLoading(false)
         }
     }
 
@@ -114,7 +134,13 @@ const Admin = () => {
      
                     </div>
                    <div className='mb-3'>
-                   <button className='btn btn-primary' type='submit'>Add Product</button>
+                   <button className='btn btn-primary' type='submit' disabled={isLoading}>{isLoading ? 'Product is Adding...' : 'Product Create'}</button>
+                   <ModalComponent 
+                   show={showModal}
+                   onClose={()=> setShowModal(false)}
+                   title={modalStatus}
+                   message={modalText}
+                    />
                    </div>
                 </form>
 

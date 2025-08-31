@@ -30,6 +30,10 @@ const AuthProvider = ({children}) => {
 
     const [order, setOrder] = useState([])
 
+    const [showModal, setShowModal] = useState(false)
+    const [modalText, setModalText] = useState("")
+    const [modalStatus, setModalStatus] = useState("")
+
     
 
     const baseURL = import.meta.env.VITE_BASE_URL
@@ -317,7 +321,13 @@ const AuthProvider = ({children}) => {
         getCurrentUser,
 
         user,
-        setUser
+        setUser,
+        showModal,
+        setShowModal,
+        modalText, 
+        setModalText,
+        modalStatus, 
+        setModalStatus
 
     }
     return(

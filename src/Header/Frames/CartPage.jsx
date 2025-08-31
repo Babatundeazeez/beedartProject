@@ -1,19 +1,31 @@
 import React, { useContext, useEffect } from 'react'
 import { authContext } from './AuthContext'
 import { useNavigate } from 'react-router-dom'
+import ModalComponent from './ModalComponent'
 
 const CartPage = () => {
 
     const {cartProduct, removeCartProduct, upDateCartProduct, setCartProduct} = useContext(authContext)
+    const {showModal,setShowModal,modalText, setModalText,modalStatus, setModalStatus} = useContext(authContext)
     const navigate = useNavigate();
 
     const handleCheckOut = () =>{
         if (cartProduct.length === 0){
-            alert("Cart is empty");
+           // alert("Cart is empty");
+            setShowModal(true)
+            setModalText("Cart is empty")
+            setModalStatus("success")
+
+           
+
             return
         }
+        setTimeout(()=>{
+            setShowModal(false)
+            navigate("/checkOutPage")
+        },3000)
         
-        navigate('/checkOutPage')
+       // navigate('/checkOutPage')
        
         
     }
@@ -82,6 +94,12 @@ const CartPage = () => {
                               <div className="col-12 mt-4">
                                 <h4>Total: ₦{totalPrice.toLocaleString()}</h4>
                                 <button className="btn btn-success mt-2" onClick={handleCheckOut}>Proceed to Checkout</button>
+                                <ModalComponent 
+                                show={showModal}
+                                onClose={()=> setShowModal(false)}
+                                title={modalStatus}
+                                message={modalText} 
+                                />
                             </div>
 
 

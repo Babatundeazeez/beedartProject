@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import {useNavigate} from 'react-router-dom'
+import { authContext } from '../Frames/AuthContext'
+import ModalComponent from '../Frames/ModalComponent'
 
 const SignUpSchema = yup.object({
   email : yup.string().email("Enter a valid email address").required("Email is required"),
@@ -19,6 +21,8 @@ const SignUp = () => {
     resolver : yupResolver(SignUpSchema)
   })
 
+  const {showModal,setShowModal,modalText, setModalText,modalStatus, setModalStatus} = useContext(authContext)
+
 
   const userUrl = import.meta.env.VITE_BASE_URL
 
@@ -28,27 +32,51 @@ const SignUp = () => {
     try {
       const res = await fetch(`${userUrl}/auth/signUp`, {
         method : "POST",
-        headers : {
-          "Content-Type" : "application/json"
+        headers: {
+          "Content-Type": "application/json"
         },
         body : JSON.stringify(data)
       })
       const display = await res.json()
       console.log(display);
-      
+
       if (res.ok){
-        alert("sign Up successfully, please check your email for verification")
+       // alert("sign Up successfully, please check your email for verification")
+       setShowModal(true)
+       setModalText("Sign Up Successfully, Please check your email for verification")
+       setModalStatus("success")
         reset()
-        navigate("/signIn")
+
+        setTimeout(()=>{
+          setShowModal(false)
+          navigate("/signIn")
+        },4000)
+        
       }
       else{
-        alert(display.message || "Sign Up Failed")
+        //alert(display.message || "Sign Up Failed")
+         setModalStatus("unsuccessful")
+         setModalText(display.message || "invalid credential, Sign Up Failed")
+         setShowModal(true)
 
       }
 
       
     } catch (error) {
       console.log(error, "Network Error");
+      const message = error?.response?.data?.message || error.message || "Something went wrong, Please try again later"
+      setModalStatus("unsuccessful")
+      setModalText(message)
+      setShowModal(true)
+
+      if(error?.response?.data?.msessage){
+        alert(`Error : ${error.response.data.message}`)
+    } else if(error.message){
+        alert(`Error : ${error.message}`)
+    }
+    else{
+        alert("Something went wrong")
+    }
      
     }
     
@@ -89,7 +117,7 @@ const SignUp = () => {
         
         <div className='mb-3'>
           <label htmlFor="name" className='form-label'>Address:</label>
-          <input className='form-control' type="name" id="address" placeholder='Enter your email address' {...register('address')} />
+          <input className='form-control' type="name" id="address" placeholder='Enter your address' {...register('address')} />
         </div>
 
         <div className='mb-3'>
@@ -105,6 +133,14 @@ const SignUp = () => {
         </div>
 
         <button className='btn btn-primary w-100'>Sign up</button>
+        <div className='mt-2'>
+          <ModalComponent 
+          show={showModal}
+          onClose={()=> setShowModal(false)}
+          title={modalStatus}
+          message={modalText}
+           />
+        </div>
       </form>
         </div>
       </div>
